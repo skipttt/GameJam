@@ -119,6 +119,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &160492975
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1169375769}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.039
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.223
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.48596603
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.50894284
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5469961
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.4534418
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 82.188
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 211.043
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -58.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+      propertyPath: m_Name
+      value: M4A1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+--- !u!4 &160492976 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: caf7a4b8151a147b6a2d4d346b6c087e, type: 3}
+  m_PrefabInstance: {fileID: 160492975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &179848144
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,14 +666,17 @@ PrefabInstance:
     - target: {fileID: -8134667007107732436, guid: 54e319425b3ab48a39e78ef23f59e84f, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: -1495815949281941313, guid: 54e319425b3ab48a39e78ef23f59e84f, type: 3}
+      objectReference: {fileID: 2100000, guid: 187d02215f9c94d1489fe9194f36e0be, type: 2}
     - target: {fileID: 919132149155446097, guid: 54e319425b3ab48a39e78ef23f59e84f, type: 3}
       propertyPath: m_Name
       value: Ch15_nonPBR
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: 54e319425b3ab48a39e78ef23f59e84f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 160492976}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e319425b3ab48a39e78ef23f59e84f, type: 3}
 --- !u!1 &956931234
@@ -767,6 +832,11 @@ MonoBehaviour:
   Velocidad: 100
   Jugador: {fileID: 1254409846}
   RotacionX: 0
+--- !u!4 &1169375769 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 54e319425b3ab48a39e78ef23f59e84f, type: 3}
+  m_PrefabInstance: {fileID: 950813424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1254409841
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controlador: {fileID: 1254409847}
-  Velocidad: 15
+  Velocidad: 3.45
   Gravedad: -10
   salto: 2
   EnElPiso: {fileID: 179848148}

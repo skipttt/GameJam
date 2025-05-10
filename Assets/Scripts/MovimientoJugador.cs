@@ -26,9 +26,10 @@ public class MovimientoJugador : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("EstaEnElPiso: " + EstaEnElPiso);
-
-        EstaEnElPiso = Physics.CheckSphere(EnElPiso.position, DistanciaDelPiso, MascaraDePiso);
+        EstaEnElPiso = Physics.Raycast(EnElPiso.position + Vector3.up * 0.1f, Vector3.down, DistanciaDelPiso, MascaraDePiso);
+        Debug.Log("Raycast: " + EstaEnElPiso);
+        Debug.DrawRay(EnElPiso.position + Vector3.up * 0.1f, Vector3.down * DistanciaDelPiso, Color.red);
+        Debug.Log("Está en el piso: " + EstaEnElPiso);
         animator.SetBool("IsJumping", !EstaEnElPiso);
 
         if (EstaEnElPiso && VelocidadAbajo.y < 0)
@@ -50,7 +51,6 @@ public class MovimientoJugador : MonoBehaviour
         VelocidadAbajo.y += Gravedad * Time.deltaTime;
         Controlador.Move(VelocidadAbajo * Time.deltaTime);
 
-        // Calcula la velocidad directamente del input de movimiento
         float movementSpeed = new Vector2(x, z).magnitude;
         animator.SetFloat("Speed", movementSpeed);
 

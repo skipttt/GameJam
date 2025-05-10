@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class MovimientoJugador : MonoBehaviour
 {
@@ -9,11 +7,13 @@ public class MovimientoJugador : MonoBehaviour
     public float Gravedad = -10;
     public float salto = 2f;
     public Transform EnElPiso;
-    public float DistanciaDelPiso;
+    public float DistanciaDelPiso = 0.4f;
     public LayerMask MascaraDePiso;
 
     public Camera camaraPrimeraPersona;
     public Camera camaraTerceraPersona;
+
+    public Animator animator;
 
     Vector3 VelocidadAbajo;
     bool EstaEnElPiso;
@@ -21,13 +21,16 @@ public class MovimientoJugador : MonoBehaviour
 
     void Start()
     {
-        ActivarPrimeraPersona(); // Comienza con la cámara en primera persona
+        ActivarPrimeraPersona();
     }
 
     void Update()
     {
-        // Movimiento
+        Debug.Log("EstaEnElPiso: " + EstaEnElPiso);
+
         EstaEnElPiso = Physics.CheckSphere(EnElPiso.position, DistanciaDelPiso, MascaraDePiso);
+        animator.SetBool("IsJumping", !EstaEnElPiso);
+
         if (EstaEnElPiso && VelocidadAbajo.y < 0)
         {
             VelocidadAbajo.y = -2;
@@ -47,7 +50,10 @@ public class MovimientoJugador : MonoBehaviour
         VelocidadAbajo.y += Gravedad * Time.deltaTime;
         Controlador.Move(VelocidadAbajo * Time.deltaTime);
 
-        // Cambio de cámara con la tecla C
+        // Calcula la velocidad directamente del input de movimiento
+        float movementSpeed = new Vector2(x, z).magnitude;
+        animator.SetFloat("Speed", movementSpeed);
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             primeraPersonaActiva = !primeraPersonaActiva;
@@ -56,6 +62,16 @@ public class MovimientoJugador : MonoBehaviour
                 ActivarPrimeraPersona();
             else
                 ActivarTerceraPersona();
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetTrigger("Shoot");
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            animator.SetTrigger("Reload");
         }
     }
 

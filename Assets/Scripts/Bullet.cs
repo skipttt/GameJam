@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Aquí puedes agregar lógica para dañar enemigos
         Destroy(gameObject);
     }
 }

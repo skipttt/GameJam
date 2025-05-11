@@ -3,6 +3,7 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    public AudioManager audioManager;
 
     void Update()
     {
@@ -10,11 +11,16 @@ public class PauseManager : MonoBehaviour
         {
             if (pauseMenu.activeSelf)
             {
+                audioManager.Reanudar();
                 ResumeGame();
+
+
             }
             else
             {
+                audioManager.Pausar();
                 PauseGame();
+
             }
         }
     }

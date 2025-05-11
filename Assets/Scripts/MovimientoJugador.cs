@@ -4,7 +4,7 @@ public class MovimientoJugador : MonoBehaviour
 {
     public CharacterController Controlador;
     public float Velocidad = 15f;
-    public float Gravedad = -10;
+    public float Gravedad = -10f;
     public float salto = 2f;
     public Transform EnElPiso;
     public float DistanciaDelPiso = 0.4f;
@@ -26,23 +26,27 @@ public class MovimientoJugador : MonoBehaviour
 
     void Update()
     {
+        // ------------------ Verifica si está en el piso ------------------
         EstaEnElPiso = Physics.Raycast(EnElPiso.position + Vector3.up * 0.1f, Vector3.down, DistanciaDelPiso, MascaraDePiso);
-        Debug.Log("Raycast: " + EstaEnElPiso);
-        Debug.DrawRay(EnElPiso.position + Vector3.up * 0.1f, Vector3.down * DistanciaDelPiso, Color.red);
-        Debug.Log("Está en el piso: " + EstaEnElPiso);
         animator.SetBool("IsJumping", !EstaEnElPiso);
 
         if (EstaEnElPiso && VelocidadAbajo.y < 0)
         {
-            VelocidadAbajo.y = -2;
+            VelocidadAbajo.y = -2f;
         }
 
+        // ------------------ Movimiento ------------------
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 mover = transform.right * x + transform.forward * z;
         Controlador.Move(mover * Velocidad * Time.deltaTime);
 
+        // Control de la animación de Idle/Run
+        float movementSpeed = new Vector2(x, z).magnitude;
+        animator.SetFloat("Speed", movementSpeed);
+
+        // ------------------ Salto ------------------
         if (Input.GetButtonDown("Jump") && EstaEnElPiso)
         {
             VelocidadAbajo.y = Mathf.Sqrt(salto * -2f * Gravedad);
@@ -51,9 +55,19 @@ public class MovimientoJugador : MonoBehaviour
         VelocidadAbajo.y += Gravedad * Time.deltaTime;
         Controlador.Move(VelocidadAbajo * Time.deltaTime);
 
-        float movementSpeed = new Vector2(x, z).magnitude;
-        animator.SetFloat("Speed", movementSpeed);
+        // ------------------ Disparo ------------------
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetTrigger("Shoot");
+        }
 
+        // ------------------ Recarga ------------------
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            animator.SetTrigger("Reload");
+        }
+
+        // ------------------ Cambio de Cámara ------------------
         if (Input.GetKeyDown(KeyCode.C))
         {
             primeraPersonaActiva = !primeraPersonaActiva;
@@ -62,16 +76,6 @@ public class MovimientoJugador : MonoBehaviour
                 ActivarPrimeraPersona();
             else
                 ActivarTerceraPersona();
-        }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetTrigger("Shoot");
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            animator.SetTrigger("Reload");
         }
     }
 

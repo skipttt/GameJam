@@ -3,6 +3,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     private AudioSource _audio;
+    private bool fuePausado = false;
 
     private void Awake()
     {
@@ -11,11 +12,19 @@ public class AudioManager : MonoBehaviour
 
     public void Pausar()
     {
-        _audio?.Pause();
+        if (_audio.isPlaying)
+        {
+            _audio.Pause();
+            fuePausado = true;
+        }
     }
 
     public void Reanudar()
     {
-        _audio?.UnPause();
+        if (fuePausado)
+        {
+            _audio.UnPause();
+            fuePausado = false;
+        }
     }
 }

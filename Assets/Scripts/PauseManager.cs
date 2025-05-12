@@ -4,6 +4,12 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     public AudioManager audioManager;
+    void Start()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+
+    }
 
     void Update()
     {
@@ -33,6 +39,7 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        audioManager.Reanudar();
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
